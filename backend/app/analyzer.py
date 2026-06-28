@@ -9,7 +9,6 @@ GitHub Profile Analyzer
 
 import asyncio
 import os
-import re
 import json
 import tempfile
 import subprocess
@@ -351,6 +350,7 @@ def aggregate_stats(repos: list[dict], scan_results: list[dict]) -> dict:
 
     # Recent repos
     recent_repos = sorted(
+        [r for r in repos if not r.get("fork")],
         key=lambda r: r.get("pushed_at", ""),
         reverse=True
     )[:6]
@@ -741,9 +741,8 @@ async def analyze_github_user(username: str) -> AsyncGenerator[dict, None]:
         "count": len(repos),
     }
 
-    # Filter: user created repos
-    own_repos = [r for r in repos]
-    clone_targets = own_repos
+    # Only clone own repos — forks excluded for accuracy
+    clone_targets = [r for r in repos if not r.get("fork")]
 
     scan_results = []
 
