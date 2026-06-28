@@ -3,7 +3,7 @@ GitHub Profile Analyzer
 - Fetches all public repos via GitHub API
 - Clones each repo (shallow) into a temp dir
 - Scans file tree for languages, frameworks, tooling
-- Aggregates stats (stars, forks, topics, commit activity)
+- Aggregates stats (stars, topics, commit activity)
 - Generates a rich, accurate README.md — no hardcodes
 """
 
@@ -320,7 +320,6 @@ def scan_repo(repo_path: Path) -> dict:
 
 def aggregate_stats(repos: list[dict], scan_results: list[dict]) -> dict:
     total_stars = sum(r.get("stargazers_count", 0) for r in repos)
-    total_forks = sum(r.get("forks_count", 0) for r in repos)
     total_watchers = sum(r.get("watchers_count", 0) for r in repos)
 
     # GitHub API language field (primary per repo)
@@ -352,7 +351,6 @@ def aggregate_stats(repos: list[dict], scan_results: list[dict]) -> dict:
 
     # Recent repos
     recent_repos = sorted(
-        [r for r in repos if not r.get("fork")],
         key=lambda r: r.get("pushed_at", ""),
         reverse=True
     )[:6]
@@ -365,7 +363,6 @@ def aggregate_stats(repos: list[dict], scan_results: list[dict]) -> dict:
     return {
         "total_repos": len(repos),
         "total_stars": total_stars,
-        "total_forks": total_forks,
         "total_watchers": total_watchers,
         "gh_langs": gh_langs,
         "scanned_langs": scanned_langs,
@@ -469,7 +466,6 @@ def build_readme(username: str, user_info: dict, stats: dict) -> str:
 
     total_repos = stats["total_repos"]
     total_stars = stats["total_stars"]
-    total_forks = stats["total_forks"]
     frameworks = stats["frameworks"]
     gh_langs = stats["gh_langs"]
     scanned_langs = stats["scanned_langs"]
@@ -534,7 +530,6 @@ def build_readme(username: str, user_info: dict, stats: dict) -> str:
         rname = r["name"]
         desc = r.get("description") or ""
         stars = r.get("stargazers_count", 0)
-        forks = r.get("forks_count", 0)
         lang = r.get("language") or ""
         repo_cards.append(
             f'[![{rname}](https://github-readme-stats.vercel.app/api/pin/?username={username}&repo={rname}&theme=dark)](https://github.com/{username}/{rname})'
@@ -602,7 +597,6 @@ def build_readme(username: str, user_info: dict, stats: dict) -> str:
         about_bullets.append(f"- 🏢 Working at / with **{company}**")
     about_bullets.append(f"- 📦 **{total_repos}** public repositories")
     about_bullets.append(f"- ⭐ **{total_stars}** total stars earned")
-    about_bullets.append(f"- 🍴 **{total_forks}** total forks")
     about_bullets.append(f"- 👥 **{followers}** followers · **{following}** following")
     if has_docker:
         about_bullets.append("- 🐳 Uses **Docker** for containerization")
@@ -747,10 +741,9 @@ async def analyze_github_user(username: str) -> AsyncGenerator[dict, None]:
         "count": len(repos),
     }
 
-    # Filter: non-fork repos first, then include forks if needed
-    own_repos = [r for r in repos if not r.get("fork")]
-    fork_repos = [r for r in repos if r.get("fork")]
-    clone_targets = own_repos + fork_repos
+    # Filter: user created repos
+    own_repos = [r for r in repos]
+    clone_targets = own_repos
 
     scan_results = []
 

@@ -121,7 +121,7 @@ const FEATURES = [
   {
     icon: "📊",
     label: "Real stats",
-    desc: "Stars, forks, watchers, commit streaks — sourced from GitHub API",
+    desc: "Stars, watchers, commit streaks — sourced from GitHub API",
   },
   {
     icon: "✍️",
