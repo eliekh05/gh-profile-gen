@@ -1,0 +1,80 @@
+import React from "react";
+
+export default function Footer() {
+  return (
+    <footer style={styles.footer}>
+      <div style={styles.inner}>
+        <div style={styles.left}>
+          <span style={styles.brand}>🧬 gh-profile-gen</span>
+          <span style={styles.sep}>·</span>
+          <span style={styles.tagline}>Evidence-driven. No hardcodes. All repos.</span>
+        </div>
+        <div style={styles.links}>
+          <a
+            href="https://github.com/eliekh05/gh-profile-gen"
+            style={styles.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+          <span style={styles.sep}>·</span>
+          <span style={styles.note}>
+            Built in the spirit of{" "}
+            <a href="https://github.com/eliekh05/cicd-auditor" style={styles.link} target="_blank" rel="noopener noreferrer">
+              cicd-auditor
+            </a>
+          </span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+const styles = {
+  footer: {
+    borderTop: "1px solid #21262d",
+    padding: "20px 24px",
+    background: "#080c10",
+  },
+  inner: {
+    maxWidth: 900,
+    margin: "0 auto",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    gap: 12,
+  },
+  left: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    flexWrap: "wrap",
+  },
+  brand: {
+    fontFamily: "var(--font-mono)",
+    fontWeight: 700,
+    fontSize: "0.85rem",
+    color: "#39d353",
+  },
+  sep: { color: "#30363d" },
+  tagline: {
+    fontSize: "0.78rem",
+    color: "#484f58",
+    fontFamily: "var(--font-mono)",
+  },
+  links: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    fontSize: "0.78rem",
+    color: "#484f58",
+    fontFamily: "var(--font-mono)",
+  },
+  link: {
+    color: "#58a6ff",
+    textDecoration: "none",
+  },
+  note: { color: "#484f58" },
+};
