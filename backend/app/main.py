@@ -4,7 +4,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 import asyncio
 import json
-from app.analyzer import analyze_github_user
+from analyzer import analyze_github_user
 
 app = FastAPI(title="GitHub Profile README Generator")
 
