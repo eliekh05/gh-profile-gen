@@ -4,7 +4,9 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 import asyncio
 import json
-from .analyzer import analyze_github_user
+import asgi                             # 🌟 Added for Cloudflare compatibility
+from workers import WorkerEntrypoint    # 🌟 Added for Cloudflare compatibility
+from analyzer import analyze_github_user
 
 app = FastAPI(title="GitHub Profile README Generator")
 
@@ -42,3 +44,9 @@ async def generate_readme(req: GenerateRequest):
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
+
+# ── CLOUDFLARE ASGI WORKER ENTRYPOINT ───────────────────────────────────────
+class Default(WorkerEntrypoint):
+    async def fetch(self, request):
+        # Maps incoming edge requests cleanly into your FastAPI application instance
+        return await asgi.fetch(app, request.js_object, self.env)
