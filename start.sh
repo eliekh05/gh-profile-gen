@@ -49,7 +49,7 @@ if [ ! -d "node_modules" ]; then
   npm install
 fi
 
-VITE_API_BASE="http://localhost:8000" npm run dev &
+VITE_API_BASE="http://localhost:8000" npm run dev --host &
 FRONTEND_PID=$!
 echo "  ✓ Frontend → http://localhost:5173"
 
