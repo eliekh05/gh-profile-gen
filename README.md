@@ -1,38 +1,37 @@
 # 🧬 gh-profile-gen
 
-Evidence-driven GitHub Profile README Generator. Enter a username — it clones all public repos, scans every file, and builds an accurate profile README from what's actually there.
+Evidence-driven GitHub Profile README Generator. Enter a username — it scans all public repos via the GitHub Contents API, detects languages and frameworks from real manifest files, and builds an accurate profile README.
 
-No forms. No checkboxes. No guessing.
+No forms. No checkboxes. No Python. No Railway.
 
 ## How it works
 
 ```
-browser → Cloudflare Pages
+browser → Cloudflare Pages (frontend)
               ↓
-        Cloudflare Worker  (rate-limit + KV cache)
+        Cloudflare Worker (backend + rate-limit + KV cache)
               ↓
-        FastAPI backend
-              ↓
-        GitHub API → git clone (shallow) → file scan → README
+        GitHub API → Contents API per repo → framework detection → README
 ```
 
 ## Stack
 
-| Layer    | Tech                              |
-|----------|-----------------------------------|
-| Frontend | React 18 + Vite                   |
-| Backend  | FastAPI + Python 3.11             |
-| Worker   | Cloudflare Workers                |
-| Cache    | Cloudflare KV                     |
-| Analysis | git clone + stdlib (no AI)        |
+| Layer    | Tech                                    |
+|----------|-----------------------------------------|
+| Frontend | React 18 + Vite                         |
+| Backend  | Cloudflare Worker (JS, no Python)       |
+| Cache    | Cloudflare KV (1h TTL)                  |
+| Analysis | GitHub Contents API (no git clone)      |
 
 ## Run locally
 
 ```bash
 bash start.sh
+# Worker   → http://localhost:8787
+# Frontend → http://localhost:5173
 ```
 
-Set `GITHUB_TOKEN` in env for higher API rate limits.
+Set `GITHUB_TOKEN` as a wrangler secret for 5000 req/hr instead of 60.
 
 ---
 

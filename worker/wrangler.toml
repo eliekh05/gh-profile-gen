@@ -1,0 +1,9 @@
+name               = "gh-profile-gen"
+main               = "index.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id      = "FILL_IN_CACHE_KV_ID"
+
+# Set via: npx wrangler secret put GITHUB_TOKEN

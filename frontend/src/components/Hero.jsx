@@ -9,7 +9,7 @@ export default function Hero() {
     const ctx = canvas.getContext("2d");
     let raf;
     const resize = () => {
-      canvas.width = canvas.offsetWidth;
+      canvas.width  = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
     };
     resize();
@@ -27,7 +27,7 @@ export default function Hero() {
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (const p of particles) {
-        p.x = (p.x + p.vx + canvas.width) % canvas.width;
+        p.x = (p.x + p.vx + canvas.width)  % canvas.width;
         p.y = (p.y + p.vy + canvas.height) % canvas.height;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -41,7 +41,7 @@ export default function Hero() {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const d = Math.sqrt(dx * dx + dy * dy);
+          const d  = Math.sqrt(dx * dx + dy * dy);
           if (d < 80) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
@@ -81,18 +81,14 @@ export default function Hero() {
         </h1>
 
         <p style={styles.subtitle}>
-          Clones <em>all</em> your public repos, analyzes every file, detects
-          languages and frameworks from real evidence, and generates a rich,
-          accurate profile README — no forms, no manual selection.
+          Clones <em>all</em> your public repos, analyzes every file,
+          detects languages and frameworks from real evidence,
+          and generates a rich, accurate profile README —
+          no forms, no manual selection.
         </p>
 
-        <strong>
-          I recommend checking the readme by previewing on github for issues and
-          fixing them due to the automated nature of the generator.
-        </strong>
-
         <div style={styles.featureGrid}>
-          {FEATURES.map((f) => (
+          {FEATURES.map(f => (
             <div key={f.label} style={styles.featureCard}>
               <span style={styles.featureIcon}>{f.icon}</span>
               <div>
@@ -108,26 +104,10 @@ export default function Hero() {
 }
 
 const FEATURES = [
-  {
-    icon: "🔍",
-    label: "Deep scan",
-    desc: "Shallow-clones every repo, reads package.json, go.mod, Cargo.toml, requirements.txt…",
-  },
-  {
-    icon: "🧠",
-    label: "Smart detect",
-    desc: "Identifies 40+ frameworks from dependency files, not just file extensions",
-  },
-  {
-    icon: "📊",
-    label: "Real stats",
-    desc: "Stars, watchers, commit streaks — sourced from GitHub API",
-  },
-  {
-    icon: "✍️",
-    label: "Rich README",
-    desc: "GitHub stat cards, trophy wall, streak, activity graph, top repos, language bars",
-  },
+  { icon: "🔍", label: "Deep scan",      desc: "Shallow-clones every repo, reads package.json, go.mod, Cargo.toml, requirements.txt…" },
+  { icon: "🧠", label: "Smart detect",   desc: "Identifies 40+ frameworks from dependency files, not just file extensions" },
+  { icon: "📊", label: "Real stats",     desc: "Stars, forks, watchers, commit streaks — sourced from GitHub API" },
+  { icon: "✍️", label: "Rich README",   desc: "GitHub stat cards, trophy wall, streak, activity graph, top repos, language bars" },
 ];
 
 const styles = {
@@ -140,17 +120,13 @@ const styles = {
     borderBottom: "1px solid #21262d",
   },
   canvas: {
-    position: "absolute",
-    inset: 0,
-    width: "100%",
-    height: "100%",
+    position: "absolute", inset: 0,
+    width: "100%", height: "100%",
     pointerEvents: "none",
   },
   overlay: {
-    position: "absolute",
-    inset: 0,
-    background:
-      "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(57,211,83,0.06) 0%, transparent 70%)",
+    position: "absolute", inset: 0,
+    background: "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(57,211,83,0.06) 0%, transparent 70%)",
     pointerEvents: "none",
   },
   content: {
@@ -177,8 +153,7 @@ const styles = {
     letterSpacing: "0.04em",
   },
   badgeDot: {
-    width: 6,
-    height: 6,
+    width: 6, height: 6,
     borderRadius: "50%",
     background: "#39d353",
     animation: "pulse 2s infinite",
@@ -223,11 +198,6 @@ const styles = {
     backdropFilter: "blur(8px)",
   },
   featureIcon: { fontSize: "1.4rem", flexShrink: 0, marginTop: 2 },
-  featureLabel: {
-    fontWeight: 700,
-    fontSize: "0.9rem",
-    marginBottom: 4,
-    color: "#e6edf3",
-  },
+  featureLabel: { fontWeight: 700, fontSize: "0.9rem", marginBottom: 4, color: "#e6edf3" },
   featureDesc: { fontSize: "0.78rem", color: "#8b949e", lineHeight: 1.5 },
 };

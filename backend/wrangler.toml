@@ -1,8 +1,0 @@
-name = "gh-profile-gen"
-main = "app/main.py"
-compatibility_date = "2026-06-29"
-compatibility_flags = ["python_workers"]
-
-[[kv_namespaces]]
-binding = "CACHE"
-id = "ff36bdc63a074a35a1614cb3ee1d800b"

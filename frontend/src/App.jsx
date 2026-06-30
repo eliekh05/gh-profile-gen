@@ -3,7 +3,7 @@ import Hero from "./components/Hero.jsx";
 import Generator from "./components/Generator.jsx";
 import Footer from "./components/Footer.jsx";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:8000";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:8787";
 
 export default function App() {
   const [phase, setPhase] = useState("idle");          // idle | running | done | error
