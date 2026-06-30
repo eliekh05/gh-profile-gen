@@ -13,7 +13,7 @@ export default function App() {
   const [errorMsg, setErrorMsg] = useState("");
   const abortRef = useRef(null);
 
-  const generate = useCallback(async (username) => {
+  const generate = useCallback(async (username, force = false) => {
     if (abortRef.current) abortRef.current.abort();
     const ctrl = new AbortController();
     abortRef.current = ctrl;
@@ -28,7 +28,7 @@ export default function App() {
       const resp = await fetch(`${API_BASE}/generate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username }),
+        body: JSON.stringify({ username, force }),
         signal: ctrl.signal,
       });
 

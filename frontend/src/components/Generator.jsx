@@ -43,9 +43,21 @@ export default function Generator({ phase, logs, readme, stats, errorMsg, onGene
               autoCapitalize="off"
             />
             {(phase === "done" || phase === "error") && (
-              <button type="button" onClick={onReset} style={styles.resetBtn}>
-                ↺ New
-              </button>
+              <>
+                <button type="button" onClick={onReset} style={styles.resetBtn}>
+                  ↺ New
+                </button>
+                {phase === "done" && (
+                  <button
+                    type="button"
+                    onClick={() => onGenerate(username.trim(), true)}
+                    style={styles.resetBtn}
+                    title="Bypass cache and regenerate fresh"
+                  >
+                    ⟳ Regenerate (skip cache)
+                  </button>
+                )}
+              </>
             )}
           </div>
 
