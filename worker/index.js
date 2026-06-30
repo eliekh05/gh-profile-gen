@@ -315,7 +315,7 @@ function buildReadme(username, u, stats) {
   const cleanBlog = blog ? (blog.startsWith("http") ? blog : `https://${blog}`) : "";
   const streakUrl   = `https://streak-stats.demolab.com/?user=${username}&theme=dark`;
   const activityUrl = `https://github-readme-activity-graph.vercel.app/graph?username=${username}&theme=github-dark`;
-  const statsUrl    = `https://ghstats.dev/api/card?username=${username}]&hide_border=true`;
+  const statsUrl    = `https://ghstats.dev/api/card?username=${username}&hide_border=true`;
   const langsUrl    = `https://ghstats.dev/api/langs?username=${username}&hide_border=true&max_langs=10`;
   const trophyUrl   = `https://trophygithubreadmelang.cybee.dpdns.org/?username=${username}&theme=darkhub&no-frame=true&margin-w=4`;
 
