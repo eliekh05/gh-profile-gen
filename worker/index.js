@@ -317,7 +317,7 @@ function buildReadme(username, u, stats) {
   const activityUrl = `https://github-readme-activity-graph.vercel.app/graph?username=${username}&theme=github-dark`;
   const statsUrl    = `https://ghstats.dev/api/card?username=${username}&hide_border=true`;
   const langsUrl    = `https://ghstats.dev/api/langs?username=${username}&hide_border=true&max_langs=10`;
-  const trophyUrl   = `https://trophygithubreadmelang.cybee.dpdns.org/?username=${username}&theme=darkhub&no-frame=true&margin-w=4`;
+  const trophyUrl   = `https://github-profile-trophy.vercel.app/?username=${username}&theme=darkhub&no-frame=true&margin-w=4`;
 
   const header = `<h1 align="center">Hi 👋, I'm ${name}</h1>`;
   // Auto-link bare URLs in bio — they don't auto-link inside <h3> on GitHub.
@@ -344,7 +344,7 @@ function buildReadme(username, u, stats) {
   ].join("\n");
 
   const topRepoCards = topRepos.slice(0,6).map(r =>
-    `  <a href="https://github.com/${username}/${r.name}"><img src="https://github-readme-stats.vercel.app/api/pin/?username=${username}&repo=${r.name}&theme=dark" /></a>`
+    `  <a href="https://github.com/${username}/${r.name}"><img src="https://github-readme-stats.shion.dev/api/pin/?username=${username}&repo=${r.name}&theme=dark" /></a>`
   ).join("\n");
 
   const topicBadges = Object.keys(topicCounts).slice(0,15).map(t=>`\`${t}\``).join(" ");
