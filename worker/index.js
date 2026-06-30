@@ -72,7 +72,7 @@ const LANG_ICONS = {
   "JavaScript": "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg",
   "TypeScript": "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg",
   "Go":         "https://raw.githubusercontent.com/devicons/devicon/master/icons/go/go-original.svg",
-  "Rust":       "https://raw.githubusercontent.com/devicons/devicon/master/icons/rust/rust-plain.svg",
+  "Rust":       "https://raw.githubusercontent.com/devicons/devicon/master/icons/rust/rust-original.svg",
   "Java":       "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg",
   "Kotlin":     "https://www.vectorlogo.zone/logos/kotlinlang/kotlinlang-icon.svg",
   "C":          "https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg",
