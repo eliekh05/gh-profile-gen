@@ -281,7 +281,7 @@ function buildReadme(username, u, stats) {
         followers=u.followers||0, following=u.following||0, created=(u.created_at||"").slice(0,4);
 
   const { totalRepos, totalStars, ghLangs, frameworks, topicCounts,
-          topRepos, recentRepos, hasDocker, hasK8s, hasCi, hasTests } = stats;
+          topRepos, hasDocker, hasK8s, hasCi, hasTests } = stats;
 
   const sortedLangs  = Object.entries(ghLangs).sort((a,b)=>b[1]-a[1]).slice(0,10);
   const totalLangCnt = sortedLangs.reduce((s,[,c])=>s+c,0)||1;
