@@ -317,7 +317,7 @@ function buildReadme(username, u, stats) {
   const activityUrl = `https://github-readme-activity-graph.vercel.app/graph?username=${username}&theme=github-dark`;
   const statsUrl    = `https://ghstats.dev/api/card?username=${username}&hide_border=true`;
   const langsUrl    = `https://ghstats.dev/api/langs?username=${username}&hide_border=true&max_langs=10`;
-  const trophyUrl   = `https://github-profile-trophy.vercel.app/?username=${username}&theme=darkhub&no-frame=true&margin-w=4`;
+  const trophyUrl   = `https://trophygithubreadmelang.cybee.dpdns.org/?username=$(username)&theme=darkhub&no-frame=true&margin-w=4`;
 
   const header = `<h1 align="center">Hi 👋, I'm ${name}</h1>`;
   // Auto-link bare URLs in bio — they don't auto-link inside <h3> on GitHub.
