@@ -279,7 +279,7 @@ function iconRow(items, map) {
 
 function buildReadme(username, u, stats) {
   const name=u.name||username, bio=u.bio||"", company=u.company||"",
-        location=u.location||"", blog=u.blog||"", twitter=u.twitter_username||"",
+        location=(u.location||"").replace(/\s+/g, " ").trim(), blog=u.blog||"", twitter=u.twitter_username||"",
         followers=u.followers||0, following=u.following||0, created=(u.created_at||"").slice(0,4);
 
   const { totalRepos, totalStars, ghLangs, frameworks, topicCounts,
@@ -292,16 +292,19 @@ function buildReadme(username, u, stats) {
   const fwWithIcons    = frameworks.filter(fw=>FRAMEWORK_ICONS[fw]);
   const fwWithoutIcons = frameworks.filter(fw=>!FRAMEWORK_ICONS[fw]);
 
+  // NOTE: markdown image/link syntax (![]() / [![]]()) does not parse
+  // reliably inside <p align="..."> blocks on GitHub. Use pure HTML
+  // <a><img/></a> instead so badges always render correctly.
   const badges = [
-    twitter ? `[![Twitter](https://img.shields.io/twitter/follow/${twitter}?style=social)](https://twitter.com/${twitter})` : "",
-    `[![GitHub followers](https://img.shields.io/github/followers/${username}?style=social)](https://github.com/${username})`,
+    twitter ? `<a href="https://twitter.com/${twitter}"><img src="https://img.shields.io/twitter/follow/${twitter}?style=social" alt="Twitter"/></a>` : "",
+    `<a href="https://github.com/${username}"><img src="https://img.shields.io/github/followers/${username}?style=social" alt="GitHub followers"/></a>`,
   ].filter(Boolean).join(" ");
 
   const statsShields = [
-    `![Profile views](https://komarev.com/ghpvc/?username=${username}&color=blueviolet)`,
-    `![Stars](https://img.shields.io/badge/Total%20Stars-${totalStars}-yellow)`,
-    `![Repos](https://img.shields.io/badge/Public%20Repos-${totalRepos}-blue)`,
-    followers ? `![Followers](https://img.shields.io/badge/Followers-${followers}-green)` : "",
+    `<img src="https://komarev.com/ghpvc/?username=${username}&color=blueviolet" alt="Profile views"/>`,
+    `<img src="https://img.shields.io/badge/Total%20Stars-${totalStars}-yellow" alt="Stars"/>`,
+    `<img src="https://img.shields.io/badge/Public%20Repos-${totalRepos}-blue" alt="Repos"/>`,
+    followers ? `<img src="https://img.shields.io/badge/Followers-${followers}-green" alt="Followers"/>` : "",
   ].filter(Boolean).join(" ");
 
   const toolingBadges = [
@@ -319,7 +322,9 @@ function buildReadme(username, u, stats) {
   const trophyUrl   = `https://trophygithubreadmelang.cybee.dpdns.org/?username=${username}&theme=darkhub&no-frame=true&margin-w=4`;
 
   const header = `<h1 align="center">Hi 👋, I'm ${name}</h1>`;
-  const sub    = bio ? `<h3 align="center">${bio}</h3>` : `<h3 align="center">A passionate developer with ${totalRepos} public repositories</h3>`;
+  // Auto-link bare URLs in bio — they don't auto-link inside <h3> on GitHub.
+  const linkedBio = bio.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1">$1</a>');
+  const sub = bio ? `<h3 align="center">${linkedBio}</h3>` : `<h3 align="center">A passionate developer with ${totalRepos} public repositories</h3>`;
 
   const about = [
     location  ? `- 📍 Based in **${location}**`                         : "",
