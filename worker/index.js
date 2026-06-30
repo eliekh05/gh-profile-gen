@@ -267,7 +267,7 @@ function aggregateStats(repos, scanResults) {
   const topRepos    = [...repos].sort((a,b)=>(b.stargazers_count||0)-(a.stargazers_count||0)).slice(0,6);
 
   return { totalRepos:repos.length, totalStars, ghLangs, frameworks:[...allFw].sort(),
-           topicCounts:sortedTopics, topRepos, recentRepos, hasTests, hasCi, hasDocker, hasK8s };
+           topicCounts:sortedTopics, topRepos, hasTests, hasCi, hasDocker, hasK8s };
 }
 
 // ── README builder ────────────────────────────────────────────────────────────
