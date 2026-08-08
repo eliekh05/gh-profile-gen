@@ -18,7 +18,6 @@ export default function Footer() {
           >
             GitHub
           </a>
-          </span>
         </div>
       </div>
     </footer>
