@@ -18,12 +18,6 @@ export default function Footer() {
           >
             GitHub
           </a>
-          <span style={styles.sep}>·</span>
-          <span style={styles.note}>
-            Built in the spirit of{" "}
-            <a href="https://github.com/eliekh05/cicd-auditor" style={styles.link} target="_blank" rel="noopener noreferrer">
-              cicd-auditor
-            </a>
           </span>
         </div>
       </div>
