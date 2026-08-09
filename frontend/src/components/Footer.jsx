@@ -38,7 +38,6 @@ export default function Footer() {
             >
               Per Readme Generator ↗
           </a>
-        </div>
       </div>
     </footer>
   );
