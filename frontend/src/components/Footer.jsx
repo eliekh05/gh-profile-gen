@@ -16,7 +16,27 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            GitHub
+            GitHub ↗
+            <span>Powered by</span>
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: "4px",
+              color: "var(--text2)",
+            }}>
+              <svg width="14" height="14" viewBox="0 0 100 100" fill="none">
+                <path d="M0 50 L50 0 L100 50 L50 100 Z" fill="#f6821f"/>
+              </svg>
+              Cloudflare Workers
+            </span>
+            <span>·</span>
+            <a
+              href="https://gh-repo-gen.pages.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--text2)", textDecoration: "none" }}
+              onMouseEnter={e => e.target.style.color = "var(--brand)"}
+              onMouseLeave={e => e.target.style.color = "var(--text2)"}
+            >
+              Per Readme Generator ↗
           </a>
         </div>
       </div>
